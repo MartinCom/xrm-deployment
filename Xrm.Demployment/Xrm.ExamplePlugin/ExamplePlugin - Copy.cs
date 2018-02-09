@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Xrm.ExamplePlugin
 {
-    public class ExamplePlugin : IPlugin
+    public class ExamplePlugin2 : IPlugin
     {
         public void Execute(IServiceProvider serviceProvider)
         {
-            throw new NotImplementedException("1");
+            throw new NotImplementedException("2");
         }
     }
 }
