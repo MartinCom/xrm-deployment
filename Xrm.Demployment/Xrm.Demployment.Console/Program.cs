@@ -43,10 +43,6 @@ namespace Xrm.Demployment.Console
 
         private static object HandleParseError(IEnumerable<Error> errs)
         {
-            //foreach (Error item in errs)
-            //{
-            //    System.Console.WriteLine($"{item.ToString()}");
-            //}
             return null;
         }
     }
