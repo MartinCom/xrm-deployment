@@ -1,6 +1,6 @@
 ﻿{
   "General": {
-    "OutputFile": "$(TargetDir)xrm-deployment.exe",
+    "OutputFile": "$(TargetDir)/merge/Xrm.Demployment.Console.exe",
     "TargetPlatform": null,
 
     "AlternativeILMergePath": null,
