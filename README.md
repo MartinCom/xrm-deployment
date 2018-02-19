@@ -17,7 +17,6 @@ Removed plugins : 0
 Finished in  0:00:00,6633709
 
 # --help
-result:
 ```
 
 Xrm.Demployment 1.0.1.0
