@@ -12,7 +12,7 @@ namespace Xrm.Demployment.Console
 
         [Option('e', "switchconfig",
       // Required = true,
-      HelpText = "path for dll, C:/example/my.dll or my.dll")]
+      HelpText = "Name of configuration elment to be processed by application")]
         public string ConfigurationElement { get; set; }
 
         [Option('c', "connectionstring",
@@ -20,7 +20,7 @@ namespace Xrm.Demployment.Console
         HelpText = "Connection string for Crm AuthType=IFD/OAuth/AD;Url=; Domain=; Username=; Password=;")]
         public string ConnectionString { get; set; }
 
-        [Option('f', "fore",
+        [Option('f', "force",
             Default = false,
           //  Required = false,
             HelpText = "fore update dll (remove missing plugintypes (plugin class).")]

@@ -5,7 +5,9 @@ Simple console app to update Dynamics CRM assemblies
 # Usage
 
 Xrm.Demployment.Console.exe --c "AuthType=<authOption>;Url=<crmurl>; Domain=<Domain>; Username=<User>; Password=<Password>;" --i 2 --path Xrm.ExamplePlugin.dll
-  
+or
+Xrm.Demployment.Console.exe if file xrm-deployment-config.json is present, first configuration item is used.
+
  Results:
  
 Start update assembly
@@ -15,26 +17,49 @@ Removed plugins : 0
 Finished in  0:00:00,6633709
 
 # --help
+result:
+Xrm.Demployment 1.0.1.0
+Copyright c  2018
 
-  -p, --path                Required. path for dll, C:/example/my.dll or my.dll
+  -p, --path                path for dll, C:/example/my.dll or my.dll
 
-  -c, --connectionstring    Required. Connection string for Crm AuthType=IFD/OAuth/AD;Url=; Domain=; Username=;
-                            Password=;
+  -e, --switchconfig        Name of configuration elment to be processed by application
 
-  -f, --fore                (Default: false) fore update dll (remove missing plugintypes (plugin class).
+  -c, --connectionstring    Connection string for Crm AuthType=IFD/OAuth/AD;Url=; Domain=; Username=; Password=;
 
-  -i, --isolationmode       Required. Isolation Mode:
+  -f, --force               (Default: false) fore update dll (remove missing plugintypes (plugin class).
+
+  -i, --isolationmode       Isolation Mode:
                     None = 1,
-                    Sandbox =
-                            2,
+                    Sandbox = 2,
+
 
   -s, --sourcetype          (Default: Database) Source Types:
                     Database = 0,
-
-                            Disk = 1,
+                    Disk = 1,
                     Normal = 2
 
   --help                    Display this help screen.
 
   --version                 Display version information.
+
+
+
+  
+# Config File 
+{
+  "Default": {
+    "connectionString": "AuthType=Office365;Url=; Username=; Password=;",
+    "force": false,
+    "isolationmode": 2,
+    "path": "Xrm.ExamplePlugin.dll",
+    "sourcetype": 0
+  },
+  "Default2": {
+    "connectionString": "",
+    "force": false,
+    "isolationmode": 2,
+    "path": ""
+  }
+}
 
