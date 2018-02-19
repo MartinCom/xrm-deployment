@@ -10,7 +10,7 @@ namespace Xrm.Demployment.Console
         HelpText = "path for dll, C:/example/my.dll or my.dll")]
         public string DllPath { get; set; }
 
-        [Option('s', "switchconfig",
+        [Option('e', "switchconfig",
       // Required = true,
       HelpText = "path for dll, C:/example/my.dll or my.dll")]
         public string ConfigurationElement { get; set; }
