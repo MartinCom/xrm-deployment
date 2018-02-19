@@ -142,6 +142,7 @@ namespace Xrm.Deployment.Core
                 ["name"] = className,
                 ["description"] = "reg from xrm.deployment"
             };
+            pluginType.EntityState = EntityState.Created;
             if (pluginTypesInAssemblyDictionary.ContainsKey(className))
             {
                 pluginType.Id = pluginTypesInAssemblyDictionary[className].Id;
@@ -189,7 +190,10 @@ namespace Xrm.Deployment.Core
                 ["publickeytoken"] = AssemblyPublicToken,
                 ["sourcetype"] = new OptionSetValue((int)_sourceType),
                 ["isolationmode"] = new OptionSetValue((int)_isolationMode),
-                ["content"] = Convert.ToBase64String(_assemblySource)
+                ["content"] = Convert.ToBase64String(_assemblySource),
+                ["customizationlevel"] =1,
+                EntityState = EntityState.Created
+               
             };
         }
 
