@@ -6,23 +6,28 @@ namespace Xrm.Demployment.Console
     public class Options
     {
         [Option('p', "path",
-            Required = true,
+           // Required = true,
         HelpText = "path for dll, C:/example/my.dll or my.dll")]
         public string DllPath { get; set; }
 
+        [Option('e', "switchconfig",
+      // Required = true,
+      HelpText = "Name of configuration elment to be processed by application")]
+        public string ConfigurationElement { get; set; }
+
         [Option('c', "connectionstring",
-            Required = true,
+            //Required = true,
         HelpText = "Connection string for Crm AuthType=IFD/OAuth/AD;Url=; Domain=; Username=; Password=;")]
         public string ConnectionString { get; set; }
 
-        [Option('f', "fore",
+        [Option('f', "force",
             Default = false,
-            Required = false,
+          //  Required = false,
             HelpText = "fore update dll (remove missing plugintypes (plugin class).")]
         public bool ForceUpdate { get; set; }
 
         [Option('i', "isolationmode",
-            Required = true,
+          //  Required = true,
             HelpText = @"Isolation Mode:
                     None = 1,
                     Sandbox = 2,
