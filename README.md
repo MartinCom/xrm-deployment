@@ -18,6 +18,8 @@ Finished in  0:00:00,6633709
 
 # --help
 result:
+```
+
 Xrm.Demployment 1.0.1.0
 Copyright c  2018
 
@@ -42,11 +44,11 @@ Copyright c  2018
   --help                    Display this help screen.
 
   --version                 Display version information.
-
-
-
   
+```
+
 # Config File 
+```
 {
   "Default": {
     "connectionString": "AuthType=Office365;Url=; Username=; Password=;",
@@ -62,4 +64,4 @@ Copyright c  2018
     "path": ""
   }
 }
-
+```
