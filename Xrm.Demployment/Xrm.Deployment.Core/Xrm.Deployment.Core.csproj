@@ -59,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyLoaderCrm.cs" />
+    <Compile Include="Confg\ConfigItem.cs" />
+    <Compile Include="Confg\ConfigReader.cs" />
+    <Compile Include="Confg\IConfigItem.cs" />
     <Compile Include="CrmSchema.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

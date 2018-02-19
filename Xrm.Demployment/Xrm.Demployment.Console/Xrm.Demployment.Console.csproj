@@ -98,6 +98,9 @@
     <None Include="App.config" />
     <None Include="ILMergeConfig.json" />
     <None Include="packages.config" />
+    <None Include="xrm-deployment-config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xrm.Deployment.Core\Xrm.Deployment.Core.csproj">
