@@ -9,6 +9,13 @@ using System.ComponentModel.Design;
 using System.Globalization;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Xrm.Deployment.VSIX.DIalogs;
+using Xrm.Deployment.Core.Confg;
+using System.Collections.Generic;
+using EnvDTE;
+using System.Runtime.InteropServices;
+using Microsoft.VisualStudio;
+using System.IO;
 
 namespace Xrm.Deployment.VSIX
 {
@@ -95,15 +102,53 @@ namespace Xrm.Deployment.VSIX
         {
             string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
             string title = "DeploymentCommand";
+            DTE dte = (DTE)ServiceProvider.GetService(typeof(DTE));
+            string solutionDir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
 
+            IntPtr hierarchyPointer, selectionContainerPointer;
+            Object selectedObject = null;
+            IVsMultiItemSelect multiItemSelect;
+            uint projectItemId;
+
+            IVsMonitorSelection monitorSelection =
+                    (IVsMonitorSelection)Package.GetGlobalService(
+                    typeof(SVsShellMonitorSelection));
+
+            monitorSelection.GetCurrentSelection(out hierarchyPointer,
+                                                 out projectItemId,
+                                                 out multiItemSelect,
+                                                 out selectionContainerPointer);
+
+            IVsHierarchy selectedHierarchy = Marshal.GetTypedObjectForIUnknown(
+                                                 hierarchyPointer,
+                                                 typeof(IVsHierarchy)) as IVsHierarchy;
+
+            if (selectedHierarchy != null)
+            {
+                ErrorHandler.ThrowOnFailure(selectedHierarchy.GetProperty(
+                                                  projectItemId,
+                                                  (int)__VSHPROPID.VSHPROPID_ExtObject,
+                                                  out selectedObject));
+            }
+
+            Project selectedProject = selectedObject as Project;
+            
+
+            ConfigReader reader = new ConfigReader(Path.GetDirectoryName(selectedProject.FullName));
+            IDictionary<string, IConfigItem> configs = reader.Read();
+            DeploymentDialog testDialog = new DeploymentDialog();
+            testDialog.DataContext = new DeploymentDialogViewModel(configs);
+            testDialog.ShowDialog();
+
+           
             // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            //VsShellUtilities.ShowMessageBox(
+            //    this.ServiceProvider,
+            //    message,
+            //    title,
+            //    OLEMSGICON.OLEMSGICON_INFO,
+            //    OLEMSGBUTTON.OLEMSGBUTTON_OK,
+            //    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
         }
     }
 }

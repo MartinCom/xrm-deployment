@@ -8,6 +8,7 @@ namespace Xrm.Deployment.Core.Confg
         bool Force { get;  }
         IsolationMode IsolationMode { get;  }
         string Path { get; }
-        SourceType SourceType { get; }
+        SourceType SourceType { get; }  
+        
     }
 }

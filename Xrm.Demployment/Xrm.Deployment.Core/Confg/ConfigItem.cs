@@ -4,7 +4,7 @@ using Xrm.Deployment.Core.Enums;
 namespace Xrm.Deployment.Core.Confg
 {
     [DataContract]
-    internal class ConfigItem : IConfigItem
+    public class ConfigItem : IConfigItem
     {
         [DataMember(Name = "connectionString")]
         public string ConnectionString { get; set; }

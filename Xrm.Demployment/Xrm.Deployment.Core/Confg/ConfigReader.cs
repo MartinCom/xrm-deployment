@@ -18,10 +18,10 @@ namespace Xrm.Deployment.Core.Confg
             _jsonConfigPath = _defaultConfigFile;
         }
 
-        public ConfigReader(string filePath)
+        public ConfigReader(string basePath)
         {
             _validatePath = true;
-            _jsonConfigPath = filePath;
+            _jsonConfigPath = $"{basePath}\\{_defaultConfigFile}";
         }
 
         public IDictionary<string, IConfigItem> Read()

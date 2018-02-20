@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Xrm.Deployment.VSIX.DIalogs.DeploymentDialog"
+﻿<local:BaseDialogWindow x:Class="Xrm.Deployment.VSIX.DIalogs.DeploymentDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,33 @@
              xmlns:local="clr-namespace:Xrm.Deployment.VSIX.DIalogs"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
-</UserControl>
+    <Border Margin="5" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Add documentation for: " Margin="5"/>
+            <StackPanel Margin="2,26,2,2" >
+                <ComboBox SelectedItem="{Binding SelectedConfig}" DisplayMemberPath="Name" ItemsSource="{Binding Configs}" 
+       />
+            </StackPanel>
+            <TextBlock Grid.Row="2" Margin="5">Documentation:</TextBlock>
+            <TextBox Grid.Row="3" x:Name="DocumentationTextBox"
+                     AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="5"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Text="{Binding DocumentationText}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4">
+                <Button Margin="5" Padding="5" Command="{Binding SaveCommand}" >Save</Button>
+                <!--Click="OnSave"-->
+                <!--<Button Margin="5" Padding="5" Click="OnDelete" Visibility="{Binding IsEditMode}">Delete</Button>-->
+                <Button Margin="5" Padding="5" Command="{Binding CancelCommand}">Cancel</Button>
+                <!--Click="OnCancel"-->
+            </StackPanel>
+        </Grid>
+    </Border>
+</local:BaseDialogWindow>
