@@ -1,5 +1,5 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="XrmDeploymentPackage.cs" company="Company">
+// <copyright file="DeploymentCommandPackage.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
@@ -38,20 +38,19 @@ namespace Xrm.Deployment.VSIX
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(XrmDeploymentPackage.PackageGuidString)]
+    [Guid(DeploymentCommandPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    
-    public sealed class XrmDeploymentPackage : Package
+    public sealed class DeploymentCommandPackage : Package
     {
         /// <summary>
-        /// XrmDeploymentPackage GUID string.
+        /// DeploymentCommandPackage GUID string.
         /// </summary>
-        public const string PackageGuidString = "87f024b2-5f3e-4618-bf1f-2d675f465de0";
+        public const string PackageGuidString = "17b55dfd-ded1-47f1-b3e3-19842e61a71e";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XrmDeployment"/> class.
+        /// Initializes a new instance of the <see cref="DeploymentCommand"/> class.
         /// </summary>
-        public XrmDeploymentPackage()
+        public DeploymentCommandPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -67,9 +66,8 @@ namespace Xrm.Deployment.VSIX
         /// </summary>
         protected override void Initialize()
         {
-            XrmDeployment.Initialize(this);
+            DeploymentCommand.Initialize(this);
             base.Initialize();
-         
         }
 
         #endregion

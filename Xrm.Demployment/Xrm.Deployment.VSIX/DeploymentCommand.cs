@@ -1,5 +1,5 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="XrmDeployment.cs" company="Company">
+// <copyright file="DeploymentCommand.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace Xrm.Deployment.VSIX
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class XrmDeployment
+    internal sealed class DeploymentCommand
     {
         /// <summary>
         /// Command ID.
@@ -25,7 +25,7 @@ namespace Xrm.Deployment.VSIX
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("842142e2-77eb-4973-bdc0-1e1292028072");
+        public static readonly Guid CommandSet = new Guid("b3c35560-0a7e-4c8e-9e0e-2c19d2c66850");
 
         /// <summary>
         /// VS Package that provides this command, not null.
@@ -33,11 +33,11 @@ namespace Xrm.Deployment.VSIX
         private readonly Package package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XrmDeployment"/> class.
+        /// Initializes a new instance of the <see cref="DeploymentCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private XrmDeployment(Package package)
+        private DeploymentCommand(Package package)
         {
             if (package == null)
             {
@@ -58,7 +58,7 @@ namespace Xrm.Deployment.VSIX
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static XrmDeployment Instance
+        public static DeploymentCommand Instance
         {
             get;
             private set;
@@ -81,7 +81,7 @@ namespace Xrm.Deployment.VSIX
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new XrmDeployment(package);
+            Instance = new DeploymentCommand(package);
         }
 
         /// <summary>
@@ -93,49 +93,17 @@ namespace Xrm.Deployment.VSIX
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            //string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            //string title = "XrmDeployment";
+            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
+            string title = "DeploymentCommand";
 
-            //// Show a message box to prove we were here
-            //VsShellUtilities.ShowMessageBox(
-            //    this.ServiceProvider,
-            //    message,
-            //    title,
-            //    OLEMSGICON.OLEMSGICON_INFO,
-            //    OLEMSGBUTTON.OLEMSGBUTTON_OK,
-            //    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-
-
-            string message;// = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "XrmDeployment";
-            EnvDTE.DTE dte;
-            object[] activeSolutionProjects;
-            EnvDTE.Project project;
-
-            dte = (EnvDTE.DTE)this.ServiceProvider.GetService(typeof(EnvDTE.DTE));
-            activeSolutionProjects = dte.ActiveSolutionProjects as object[];
-
-            if (activeSolutionProjects != null)
-            {
-                foreach (object activeSolutionProject in activeSolutionProjects)
-                {
-                    project = activeSolutionProject as EnvDTE.Project;
-
-                    if (project != null)
-                    {
-                        message = $"Called on {project.FullName}";
-
-                        // Show a message box to prove we were here
-                        VsShellUtilities.ShowMessageBox(
-                            this.ServiceProvider,
-                            message,
-                            title,
-                            OLEMSGICON.OLEMSGICON_INFO,
-                            OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                            OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-                    }
-                }
-            }
+            // Show a message box to prove we were here
+            VsShellUtilities.ShowMessageBox(
+                this.ServiceProvider,
+                message,
+                title,
+                OLEMSGICON.OLEMSGICON_INFO,
+                OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
         }
     }
 }
