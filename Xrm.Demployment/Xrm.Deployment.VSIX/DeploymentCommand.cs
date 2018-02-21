@@ -132,12 +132,12 @@ namespace Xrm.Deployment.VSIX
             }
 
             Project selectedProject = selectedObject as Project;
-            
 
-            ConfigReader reader = new ConfigReader(Path.GetDirectoryName(selectedProject.FullName));
+            string projectPath = Path.GetDirectoryName(selectedProject.FullName);
+            ConfigReader reader = new ConfigReader(projectPath);
             IDictionary<string, IConfigItem> configs = reader.Read();
             DeploymentDialog testDialog = new DeploymentDialog();
-            testDialog.DataContext = new DeploymentDialogViewModel(configs);
+            testDialog.DataContext = new DeploymentDialogViewModel(configs, projectPath);
             testDialog.ShowDialog();
 
            
