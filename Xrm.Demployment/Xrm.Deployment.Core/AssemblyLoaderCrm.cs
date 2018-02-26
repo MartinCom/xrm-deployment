@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using Xrm.Deployment.Core.Enums;
+using Xrm.Deployment.Core.Utils;
 
 namespace Xrm.Deployment.Core
 {
@@ -18,13 +19,15 @@ namespace Xrm.Deployment.Core
         private readonly IsolationMode _isolationMode;
         private readonly XrmServiceContext _ctx;
         private readonly IOrganizationService _organizationService;
-
+        private readonly ILog _log;
         public AssemblyLoaderCrm(
+            ILog log,
             string dllPath,
             IOrganizationService organizationService,
             IsolationMode isolationMode,
             SourceType sourceType = SourceType.Database)
         {
+            _log = log;
             _assemblySource = File.ReadAllBytes(dllPath);
             _isolationMode = isolationMode;
             _sourceType = sourceType;
@@ -34,11 +37,13 @@ namespace Xrm.Deployment.Core
         }
 
         public AssemblyLoaderCrm(
+            ILog log,
             byte[] assemblySource,
             IOrganizationService organizationService,
             IsolationMode isolationMode,
             SourceType sourceType = SourceType.Database)
         {
+            _log = log;
             _assemblySource = assemblySource;
             _isolationMode = isolationMode;
             _sourceType = sourceType;
@@ -48,7 +53,7 @@ namespace Xrm.Deployment.Core
 
         public void Run()
         {
-            Console.WriteLine("Start update assembly");
+            _log.Log("Start update assembly");
             Stopwatch stopper = new Stopwatch();
             stopper.Start();
             foreach (Entity item in ReadCrmEntities().OrderBy(p => p.EntityState))
@@ -57,10 +62,10 @@ namespace Xrm.Deployment.Core
             }
 
             stopper.Stop();
-            Console.WriteLine($"Updated plugins : {_pluginUpdatedCount}");
-            Console.WriteLine($"Created plugins : {_pluginCreatedCount}");
-            Console.WriteLine($"Removed plugins : {_pluginRemovedCount}");
-            Console.WriteLine($"Finished in  {stopper.Elapsed:g}");
+            _log.Log($"Updated plugins : {_pluginUpdatedCount}");
+            _log.Log($"Created plugins : {_pluginCreatedCount}");
+            _log.Log($"Removed plugins : {_pluginRemovedCount}");
+            _log.Log($"Finished in  {stopper.Elapsed:g}");
         }
 
         private int _pluginCreatedCount = 0;
@@ -158,7 +163,7 @@ namespace Xrm.Deployment.Core
             Type pluginInterfaceType = typeof(IPlugin);
             return _assembly
                 .GetTypes()
-                .Where(p => pluginInterfaceType.IsAssignableFrom(p) && !p.IsInterface && p.IsClass && !p.IsAbstract);
+                .Where(p => pluginInterfaceType.IsAssignableFrom(pluginInterfaceType) && !p.IsInterface && p.IsClass && !p.IsAbstract);
         }
 
         private Guid GetAssemblyId()
