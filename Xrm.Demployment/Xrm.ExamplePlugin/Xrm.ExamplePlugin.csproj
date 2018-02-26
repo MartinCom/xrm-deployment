@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="example.snk" />
     <None Include="packages.config" />
+    <None Include="xrm-deployment-config.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using System.Linq;
 using Xrm.Deployment.Core;
 using Xrm.Deployment.Core.Confg;
 using Xrm.Deployment.Core.Enums;
+using Xrm.Deployment.Core.Utils;
 
 namespace Xrm.Demployment.Console
 {
@@ -18,7 +19,7 @@ namespace Xrm.Demployment.Console
 
             if (args.Length <= 0)
             {
-                ConfigReader reader = new ConfigReader();
+                ConfigReader reader = new ConfigReader(new ConsoleLog());
                 IDictionary<string, IConfigItem> configs = reader.Read();
                 if (configs != null && configs.Count > 0)
                 {
@@ -35,7 +36,7 @@ namespace Xrm.Demployment.Console
         private static void RunOnConfigDefault(IConfigItem configItem)
         {
             CrmServiceClient client = GetConnection(configItem);
-            AssemblyLoaderCrm loader = new AssemblyLoaderCrm(configItem.Path, client, configItem.IsolationMode, configItem.SourceType);
+            AssemblyLoaderCrm loader = new AssemblyLoaderCrm(new ConsoleLog(),configItem.Path, client, configItem.IsolationMode, configItem.SourceType);
             loader.Run();
         }
 
@@ -47,7 +48,7 @@ namespace Xrm.Demployment.Console
             SourceType sourceType;
             if (!string.IsNullOrWhiteSpace(opts.ConfigurationElement))
             {
-                ConfigReader reader = new ConfigReader();
+                ConfigReader reader = new ConfigReader(new ConsoleLog());
                 IDictionary<string, IConfigItem> configs = reader.Read();
                 if (configs == null || configs.Count <= 0)
                 {
@@ -69,7 +70,7 @@ namespace Xrm.Demployment.Console
                 sourceType = opts.SourceType;
             }
 
-            AssemblyLoaderCrm loader = new AssemblyLoaderCrm(path, client, isolationMode, sourceType);
+            AssemblyLoaderCrm loader = new AssemblyLoaderCrm(new ConsoleLog(),path, client, isolationMode, sourceType);
             loader.Run();
         }
 
