@@ -16,6 +16,7 @@ using EnvDTE;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio;
 using System.IO;
+using Xrm.Deployment.VSIX.Utils;
 
 namespace Xrm.Deployment.VSIX
 {
@@ -134,10 +135,10 @@ namespace Xrm.Deployment.VSIX
             Project selectedProject = selectedObject as Project;
 
             string projectPath = Path.GetDirectoryName(selectedProject.FullName);
-            ConfigReader reader = new ConfigReader(projectPath);
-            IDictionary<string, IConfigItem> configs = reader.Read();
+            ConfigReader reader = new ConfigReader(projectPath,new OutputLog());
+       
             DeploymentDialog testDialog = new DeploymentDialog();
-            testDialog.DataContext = new DeploymentDialogViewModel(configs, projectPath);
+            testDialog.DataContext = new DeploymentDialogViewModel(reader, projectPath);
             testDialog.ShowDialog();
 
            

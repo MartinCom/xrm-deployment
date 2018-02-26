@@ -27,7 +27,7 @@ namespace Xrm.Deployment.VSIX.DIalogs
         }
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            DocumentationTextBox.Focus();
+            //DocumentationTextBox.Focus();
             RegisterToViewModelEvents();
         }
 

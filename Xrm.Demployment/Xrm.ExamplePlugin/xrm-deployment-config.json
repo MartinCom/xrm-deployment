@@ -1,0 +1,16 @@
+﻿{
+  "Default": {
+    "connectionString": "AuthType=Office365;Url=; Username=; Password=;",
+    "force": true,
+    "isolationmode": 2,
+    "path": "Xrm.ExamplePlugin.dll",
+    "sourcetype": 0,
+    "isdefault": true
+  },
+  "Default2": {
+    "connectionString": "",
+    "force": false,
+    "isolationmode": 2,
+    "path": ""
+  }
+}

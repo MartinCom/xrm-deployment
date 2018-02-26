@@ -19,7 +19,7 @@ namespace Xrm.Demployment.Console
 
             if (args.Length <= 0)
             {
-                ConfigReader reader = new ConfigReader();
+                ConfigReader reader = new ConfigReader(new ConsoleLog());
                 IDictionary<string, IConfigItem> configs = reader.Read();
                 if (configs != null && configs.Count > 0)
                 {
@@ -48,7 +48,7 @@ namespace Xrm.Demployment.Console
             SourceType sourceType;
             if (!string.IsNullOrWhiteSpace(opts.ConfigurationElement))
             {
-                ConfigReader reader = new ConfigReader();
+                ConfigReader reader = new ConfigReader(new ConsoleLog());
                 IDictionary<string, IConfigItem> configs = reader.Read();
                 if (configs == null || configs.Count <= 0)
                 {

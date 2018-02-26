@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Xrm.Deployment.Core.Confg;
-using Xrm.Deployment.Core.Enums;
 
 namespace Xrm.Deployment.VSIX.DIalogs
 {
-    public class ConfigItemViewModel : IConfigItem
+    public class ConfigItemViewModel : ConfigItem, IConfigItem
     {
-        public ConfigItemViewModel(KeyValuePair<string,IConfigItem> element)
+        public ConfigItemViewModel(int index)
+        {
+            Name = $"new config {index}";
+        }
+        public ConfigItemViewModel(KeyValuePair<string, IConfigItem> element)
         {
             ConnectionString = element.Value.ConnectionString;
             Force = element.Value.Force;
@@ -18,16 +18,9 @@ namespace Xrm.Deployment.VSIX.DIalogs
             Path = element.Value.Path;
             SourceType = element.Value.SourceType;
             Name = element.Key;
+            IsDefault = element.Value.IsDefault;
         }
-        public string ConnectionString { get; }
 
-        public bool Force { get; }
-
-        public IsolationMode IsolationMode { get; }
-
-        public string Path { get; }
-
-        public SourceType SourceType { get; }
-        public string Name { get; }
+        public string Name { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,12 +15,18 @@ namespace Xrm.Deployment.VSIX.DIalogs
 {
     internal class DeploymentDialogViewModel : INotifyPropertyChanged
     {
-        private readonly IEnumerable<ConfigItemViewModel> _configs;
+        private readonly ConfigReader _configReader;
+        private readonly ObservableCollection<ConfigItemViewModel> _configs;
         private readonly string _projectBasePath;
-        public DeploymentDialogViewModel(IDictionary<string, IConfigItem> configs,string path)
+        private ConfigItemViewModel _selectedConfig;
+
+        public DeploymentDialogViewModel(ConfigReader configReader, string path)
         {
-            _configs = configs.Select(p => new ConfigItemViewModel(p));
-            SelectedConfig = _configs.First();
+            _configReader = configReader;
+
+            _configs = new ObservableCollection<ConfigItemViewModel>(
+                _configReader.Read().Select(p => new ConfigItemViewModel(p)));
+            SelectedConfig = _configs.FirstOrDefault(p => p.IsDefault);
 
             _projectBasePath = path;
         }
@@ -28,7 +35,7 @@ namespace Xrm.Deployment.VSIX.DIalogs
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public IEnumerable<ConfigItemViewModel> Configs
+        public ObservableCollection<ConfigItemViewModel> Configs
         {
             get
             {
@@ -36,7 +43,36 @@ namespace Xrm.Deployment.VSIX.DIalogs
             }
         }
 
-        public ConfigItemViewModel SelectedConfig { get; set; }
+        public ConfigItemViewModel SelectedConfig
+        {
+            get { return _selectedConfig; }
+            set
+            {
+                _selectedConfig = value;
+               
+                SetDefaultSelection(_selectedConfig != null ? _selectedConfig.Name: string.Empty);
+                RaisePropertyChanged("SelectedConfig");
+            }
+        }
+
+        private void SetDefaultSelection(string name)
+        {
+            foreach (ConfigItemViewModel item in _configs)
+            {
+                item.IsDefault = false;
+                if (item.Name == name)
+                {
+                    item.IsDefault = true;
+                }
+            }
+        }
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        //    public ConfigItemViewModel SelectedConfig { get; set; }
 
         private static CrmServiceClient GetConnection(IConfigItem confgiItem)
         {
@@ -47,13 +83,6 @@ namespace Xrm.Deployment.VSIX.DIalogs
             }
             return client;
         }
-        private  string GetPath(string dllPath)
-        {
-            string path = dllPath;
-            if (!dllPath.Contains(":"))
-                path = $"{_projectBasePath}\\{dllPath}";
-            return path;
-        }
 
         private void Deployment(object obj)
         {
@@ -61,8 +90,9 @@ namespace Xrm.Deployment.VSIX.DIalogs
             {
                 OutputWindowHelper.Log("Deployment Start..");
                 CrmServiceClient client = GetConnection(SelectedConfig);
-                AssemblyLoaderCrm loader = new AssemblyLoaderCrm(new OutputLog(),GetPath(SelectedConfig.Path), client, SelectedConfig.IsolationMode, SelectedConfig.SourceType);
+                AssemblyLoaderCrm loader = new AssemblyLoaderCrm(new OutputLog(), GetPath(SelectedConfig.Path), client, SelectedConfig.IsolationMode, SelectedConfig.SourceType);
                 loader.Run();
+                _configReader.Save(Configs.ToDictionary(k => k.Name, v => (IConfigItem)v));
             }
             catch (Exception ex)
             {
@@ -77,6 +107,14 @@ namespace Xrm.Deployment.VSIX.DIalogs
             }
         }
 
+        private string GetPath(string dllPath)
+        {
+            string path = dllPath;
+            if (!dllPath.Contains(":"))
+                path = $"{_projectBasePath}\\{dllPath}";
+            return path;
+        }
+
         private void RaisePropertChange([CallerMemberName]string propertyName = null)
         {
             if (propertyName == null)
@@ -84,12 +122,19 @@ namespace Xrm.Deployment.VSIX.DIalogs
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void SaveAndClose(object obj)
+        {
+            _configReader.Save(Configs.ToDictionary(k => k.Name, v => (IConfigItem)v));
+            CloseRequest?.Invoke(false);
+        }
+
         #region Command
 
         public ICommand _cancelCommand;
 
         public ICommand _deployCommand;
-
+        public ICommand _saveAndCloseCommand;
+        public ICommand _addConfigCommand;
         public ICommand CancelCommand
         {
             get
@@ -112,6 +157,37 @@ namespace Xrm.Deployment.VSIX.DIalogs
                 }
                 return _deployCommand;
             }
+        }
+
+        public ICommand SaveAndCloseCommand
+        {
+            get
+            {
+                if (_saveAndCloseCommand == null)
+                {
+                    _saveAndCloseCommand = new RelayCommand(SaveAndClose);
+                }
+                return _saveAndCloseCommand;
+            }
+        }
+
+        public ICommand AddConfigCommand
+        {
+            get
+            {
+                if (_addConfigCommand == null)
+                {
+                    _addConfigCommand = new RelayCommand(AddConfigElement);
+                }
+                return _addConfigCommand;
+            }
+        }
+
+        private void AddConfigElement(object obj)
+        {
+            _configs.Add(new ConfigItemViewModel(_configs.Count));
+            SelectedConfig = _configs.Last();
+
         }
 
         #endregion Command
