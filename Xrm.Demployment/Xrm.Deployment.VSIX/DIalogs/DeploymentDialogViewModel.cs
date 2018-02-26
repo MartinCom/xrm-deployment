@@ -23,9 +23,17 @@ namespace Xrm.Deployment.VSIX.DIalogs
         public DeploymentDialogViewModel(ConfigReader configReader, string path)
         {
             _configReader = configReader;
-
-            _configs = new ObservableCollection<ConfigItemViewModel>(
-                _configReader.Read().Select(p => new ConfigItemViewModel(p)));
+            IDictionary<string, IConfigItem> items = _configReader.TryRead();
+            if (items == null)
+            {
+                _configs = new ObservableCollection<ConfigItemViewModel>();
+                _configs.Add(new ConfigItemViewModel(0));
+            }
+            else
+            {
+                _configs = new ObservableCollection<ConfigItemViewModel>(
+                    _configReader.Read().Select(p => new ConfigItemViewModel(p)));
+            }
             SelectedConfig = _configs.FirstOrDefault(p => p.IsDefault);
 
             _projectBasePath = path;
@@ -49,8 +57,8 @@ namespace Xrm.Deployment.VSIX.DIalogs
             set
             {
                 _selectedConfig = value;
-               
-                SetDefaultSelection(_selectedConfig != null ? _selectedConfig.Name: string.Empty);
+
+                SetDefaultSelection(_selectedConfig != null ? _selectedConfig.Name : string.Empty);
                 RaisePropertyChanged("SelectedConfig");
             }
         }

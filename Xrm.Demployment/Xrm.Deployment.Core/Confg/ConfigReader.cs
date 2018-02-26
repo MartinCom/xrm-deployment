@@ -30,8 +30,21 @@ namespace Xrm.Deployment.Core.Confg
             _validatePath = true;
             _jsonConfigPath = $"{basePath}\\{_defaultConfigFile}";
         }
-
-        public IDictionary<string, IConfigItem> Read()
+        public IDictionary<string, IConfigItem> TryRead()
+        {
+            try
+            {
+                return Read();
+            }
+            catch (Exception ex)
+            {
+                _log.Log(ex.Message);
+                _log.Log(ex.ToString());
+                return null;
+            }
+            
+        }
+            public IDictionary<string, IConfigItem> Read()
         {
             if (!File.Exists(_jsonConfigPath))
             {
