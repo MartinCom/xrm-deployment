@@ -64,3 +64,7 @@ Copyright c  2018
   }
 }
 ```
+
+# VSIX 
+Project contains VSIX with simple config selector and deployment option, all loging to output window.
+
