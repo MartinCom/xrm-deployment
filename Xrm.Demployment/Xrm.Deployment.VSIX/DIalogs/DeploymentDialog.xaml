@@ -69,8 +69,8 @@
                 </StackPanel>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Width="250"  >Path:</Label>
-                        <TextBox MinWidth="150" VerticalAlignment="Center"  Text="{Binding SelectedConfig.Path}"  ></TextBox>
+                        <Label Width="120"  >Path:</Label>
+                        <TextBox MinWidth="250" VerticalAlignment="Center"  Text="{Binding SelectedConfig.Path}"  ></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel>
