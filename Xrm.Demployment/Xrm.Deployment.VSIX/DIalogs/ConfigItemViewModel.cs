@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Xrm.Deployment.Core.Confg;
 
 namespace Xrm.Deployment.VSIX.DIalogs
@@ -10,6 +9,7 @@ namespace Xrm.Deployment.VSIX.DIalogs
         {
             Name = $"new config {index}";
         }
+
         public ConfigItemViewModel(KeyValuePair<string, IConfigItem> element)
         {
             ConnectionString = element.Value.ConnectionString;

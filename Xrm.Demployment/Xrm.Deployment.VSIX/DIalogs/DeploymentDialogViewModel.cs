@@ -143,6 +143,7 @@ namespace Xrm.Deployment.VSIX.DIalogs
         public ICommand _deployCommand;
         public ICommand _saveAndCloseCommand;
         public ICommand _addConfigCommand;
+
         public ICommand CancelCommand
         {
             get
@@ -195,7 +196,6 @@ namespace Xrm.Deployment.VSIX.DIalogs
         {
             _configs.Add(new ConfigItemViewModel(_configs.Count));
             SelectedConfig = _configs.Last();
-
         }
 
         #endregion Command

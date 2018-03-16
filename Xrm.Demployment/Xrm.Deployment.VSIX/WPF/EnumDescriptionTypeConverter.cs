@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Xrm.Deployment.VSIX.WPF
 {
@@ -14,6 +10,7 @@ namespace Xrm.Deployment.VSIX.WPF
             : base(type)
         {
         }
+
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(string))
@@ -34,6 +31,4 @@ namespace Xrm.Deployment.VSIX.WPF
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }
-
-
 }
