@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Xrm.Deployment.VSIX.WPF
@@ -11,10 +7,10 @@ namespace Xrm.Deployment.VSIX.WPF
     {
         #region Fields
 
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
 
-        #endregion // Fields
+        #endregion Fields
 
         #region Constructors
 
@@ -26,7 +22,8 @@ namespace Xrm.Deployment.VSIX.WPF
             _execute = execute;
             _canExecute = canExecute;
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region ICommand Members
 
@@ -68,6 +65,6 @@ namespace Xrm.Deployment.VSIX.WPF
             }
         }
 
-        #endregion // ICommand Members
+        #endregion ICommand Members
     }
 }

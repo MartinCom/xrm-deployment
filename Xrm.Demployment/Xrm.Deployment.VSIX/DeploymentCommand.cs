@@ -4,18 +4,17 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using EnvDTE;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Xrm.Deployment.VSIX.DIalogs;
-using Xrm.Deployment.Core.Confg;
-using System.Collections.Generic;
-using EnvDTE;
-using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
 using System.IO;
+using System.Runtime.InteropServices;
+using Xrm.Deployment.Core.Confg;
+using Xrm.Deployment.VSIX.DIalogs;
 using Xrm.Deployment.VSIX.Utils;
 
 namespace Xrm.Deployment.VSIX
@@ -135,13 +134,12 @@ namespace Xrm.Deployment.VSIX
             Project selectedProject = selectedObject as Project;
 
             string projectPath = Path.GetDirectoryName(selectedProject.FullName);
-            ConfigReader reader = new ConfigReader(projectPath,new OutputLog());
-       
+            ConfigReader reader = new ConfigReader(projectPath, new OutputLog());
+
             DeploymentDialog testDialog = new DeploymentDialog();
             testDialog.DataContext = new DeploymentDialogViewModel(reader, projectPath);
             testDialog.ShowDialog();
 
-           
             // Show a message box to prove we were here
             //VsShellUtilities.ShowMessageBox(
             //    this.ServiceProvider,
