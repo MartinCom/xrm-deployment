@@ -4,7 +4,7 @@ namespace Xrm.Deployment.VSIX.DIalogs
 {
     public class BaseDialogWindow : DialogWindow
     {
-        public BaseDialogWindow()
+        protected BaseDialogWindow()
         {
             this.HasMaximizeButton = true;
             this.HasMinimizeButton = true;

@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSIX", "VSIX", "{191172C8-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xrm.Deployment.VSIX", "Xrm.Deployment.VSIX\Xrm.Deployment.VSIX.csproj", "{89769E9E-A395-4AF0-BC88-D677A6023AFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "McTools.Xrm.Connection", "McTools.Xrm.Connection\McTools.Xrm.Connection.csproj", "{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "McTools.Xrm.Connection.WinForms", "McTools.Xrm.Connection.WinForms\McTools.Xrm.Connection.WinForms.csproj", "{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}"
+EndProject
 Global
 	GlobalSection(CrmCodeGeneration) = preSolution
 		UseSSL = False
@@ -29,32 +33,55 @@ Global
 		IncludeNonStandard = False
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Without GemBox|Any CPU = Debug Without GemBox|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Debug Without GemBox|Any CPU.ActiveCfg = Debug|Any CPU
+		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Debug Without GemBox|Any CPU.Build.0 = Debug|Any CPU
 		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7588978F-4D5B-4E21-8FE5-9F784D857DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B00E3804-1540-47C5-8178-014B57C83DE9}.Debug Without GemBox|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00E3804-1540-47C5-8178-014B57C83DE9}.Debug Without GemBox|Any CPU.Build.0 = Debug|Any CPU
 		{B00E3804-1540-47C5-8178-014B57C83DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B00E3804-1540-47C5-8178-014B57C83DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B00E3804-1540-47C5-8178-014B57C83DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B00E3804-1540-47C5-8178-014B57C83DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Debug Without GemBox|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Debug Without GemBox|Any CPU.Build.0 = Debug|Any CPU
 		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC8A587-575F-44F6-8F7A-838795E99A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Debug Without GemBox|Any CPU.ActiveCfg = Debug|Any CPU
+		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Debug Without GemBox|Any CPU.Build.0 = Debug|Any CPU
 		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89769E9E-A395-4AF0-BC88-D677A6023AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Debug Without GemBox|Any CPU.ActiveCfg = Debug Without GemBox|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Debug Without GemBox|Any CPU.Build.0 = Debug Without GemBox|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Debug Without GemBox|Any CPU.ActiveCfg = Debug Without GemBox|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Debug Without GemBox|Any CPU.Build.0 = Debug Without GemBox|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{89769E9E-A395-4AF0-BC88-D677A6023AFE} = {191172C8-DAB4-4B6C-BC4D-F042F9488770}
+		{C3824C2C-6E2E-4FDE-A2AA-229BBC7C3B1F} = {191172C8-DAB4-4B6C-BC4D-F042F9488770}
+		{EEB5C09F-CEC6-4FB5-87B5-AE61AE89C9EB} = {191172C8-DAB4-4B6C-BC4D-F042F9488770}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB2FE199-D8C7-440C-AB59-66D5EF37B0B6}
