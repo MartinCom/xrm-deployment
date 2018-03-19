@@ -21,6 +21,6 @@ namespace Xrm.Deployment.VSIX.DIalogs
             IsDefault = element.Value.IsDefault;
         }
 
-        public string Name { get; set; }
+        public string Name { get; }
     }
 }

@@ -59,6 +59,13 @@
           <ButtonText>Publish Assembly</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidDeploymentOptionsCmdSet" id="DeploymentOptionsId" priority="0x0100" type="Button">
+        <Parent guid="guidDeploymentOptionsCmdSet" id="MyMenuGroupOptions" />
+        <Icon guid="guidImagesOptions" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Publish Assembly Options</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -69,6 +76,8 @@
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
       <Bitmap guid="guidImages" href="Resources\DeploymentCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <!--<Bitmap guid="guidImagesOptions" href="Resources\Options.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>-->
+
     </Bitmaps>
   </Commands>
 
@@ -81,8 +90,20 @@
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="DeploymentCommandId" value="0x0100" />
     </GuidSymbol>
+    <GuidSymbol name="guidDeploymentOptionsCmdSet" value="{0CBC3BAE-70B4-4626-9DBE-DB3F7E325EB3}">
+      <IDSymbol name="MyMenuGroupOptions" value="0x1020" />
+      <IDSymbol name="DeploymentOptionsId" value="0x0100" />
+    </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{ad6970f8-9953-4e02-91f1-5aff50f2d154}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+    <GuidSymbol name="guidImagesOptions" value="{A009A931-2E63-46B5-8B63-DE5AB459AC7B}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />

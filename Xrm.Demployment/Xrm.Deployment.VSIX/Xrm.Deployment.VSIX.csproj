@@ -81,6 +81,7 @@
     <Content Include="index.html" />
     <Content Include="Resources\DeploymentCommand.png" />
     <Content Include="Resources\DeploymentCommandPackage.ico" />
+    <Content Include="Resources\Options.png" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
